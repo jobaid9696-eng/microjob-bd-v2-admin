@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MicroJobBD v2 - Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span>MicroJobBD <small>Admin v2</small></span>
+        </div>
+        <button class="close-sidebar" id="closeSidebar" aria-label="Close Sidebar">&times;</button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#dashboard" class="nav-item active">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a>
+        <a href="#payments" class="nav-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Payments & Requests
+          <span class="badge badge-warning" id="pendingBadgeCount">0</span>
+        </a>
+        <a href="#users" class="nav-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Users Management
+        </a>
+        <a href="#tasks" class="nav-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          Tasks & Submissions
+        </a>
+        <a href="#referrals" class="nav-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+          Referral Tracker
+        </a>
+        <a href="#settings" class="nav-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Platform Settings
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="admin-user-card">
+          <div class="avatar">SA</div>
+          <div class="info">
+            <span class="name">Super Admin</span>
+            <span class="role">admin@microjobbd.com</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <main class="main-content">
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="globalSearch" placeholder="Search user, tx ID, task...">
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="time-filter">
+            <select id="timeRangeSelect">
+              <option value="today">Today</option>
+              <option value="7days" selected>Last 7 Days</option>
+              <option value="30days">Last 30 Days</option>
+              <option value="all">All Time</option>
+            </select>
+          </div>
+          <button class="icon-btn" id="notificationBtn" aria-label="Notifications">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="dot-badge"></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Dashboard Body -->
+      <div class="dashboard-body">
+        
+        <!-- Welcome banner -->
+        <div class="welcome-banner">
+          <div>
+            <h1>Dashboard Overview</h1>
+            <p>Welcome back, Admin. System is freshly initialized and ready for new data.</p>
+          </div>
+          <div class="banner-actions">
+            <button class="btn btn-primary" id="refreshDataBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.66-5.66"/></svg>
+              Refresh Stats
+            </button>
+          </div>
+        </div>
+
+        <!-- Key Metrics Grid (Zeroed out) -->
+        <div class="metrics-grid">
+          
+          <div class="metric-card">
+            <div class="metric-icon users">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="metric-info">
+              <span class="label">Total Users</span>
+              <h3 class="value" id="totalUsersCount">0</h3>
+              <span class="trend neutral">0 active today</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon pending">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="metric-info">
+              <span class="label">Pending Payments</span>
+              <h3 class="value" id="pendingPaymentsCount">0</h3>
+              <span class="trend neutral">0.00 BDT request</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon deposits">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="metric-info">
+              <span class="label">Approved Deposits</span>
+              <h3 class="value" id="approvedDepositsTotal">৳0.00</h3>
+              <span class="trend neutral">0 transactions</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon withdrawals">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </div>
+            <div class="metric-info">
+              <span class="label">Approved Withdrawals</span>
+              <h3 class="value" id="approvedWithdrawalsTotal">৳0.00</h3>
+              <span class="trend neutral">0 payouts</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Secondary Stats Grid: Tasks & Completion -->
+        <div class="stats-row">
+          <div class="panel task-stats-panel">
+            <div class="panel-header">
+              <h3>Task Completion & Status</h3>
+              <span class="badge badge-subtle">Fresh Start</span>
+            </div>
+            <div class="task-stats-grid">
+              <div class="stat-box">
+                <span class="box-label">Total Tasks Posted</span>
+                <h4 class="box-value">0</h4>
+              </div>
+              <div class="stat-box">
+                <span class="box-label">Completed Tasks</span>
+                <h4 class="box-value">0</h4>
+              </div>
+              <div class="stat-box">
+                <span class="box-label">Pending Submissions</span>
+                <h4 class="box-value">0</h4>
+              </div>
+              <div class="stat-box">
+                <span class="box-label">Success Rate</span>
+                <h4 class="box-value">0%</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel quick-actions-panel">
+            <div class="panel-header">
+              <h3>Quick Actions</h3>
+            </div>
+            <div class="actions-list">
+              <button class="action-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add Manual Deposit
+              </button>
+              <button class="action-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                Broadcast Announcement
+              </button>
+              <button class="action-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                Gateway Config
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Requests Table (Empty State) -->
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Recent Deposit & Withdrawal Requests</h3>
+            <span class="text-muted">Showing 0 records</span>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tx ID</th>
+                  <th>User</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Method</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="7" class="empty-state">
+                    <div class="empty-content">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                      <p>No transaction requests found. System is clean.</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Simple interactive sidebar toggle for mobile
+    const menuToggle = document.getElementById('menuToggle');
+    const closeSidebar = document.getElementById('closeSidebar');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    function toggleMenu() {
+      sidebar.classList.toggle('open');
+      sidebarOverlay.classList.toggle('active');
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+    closeSidebar.addEventListener('click', toggleMenu);
+    sidebarOverlay.addEventListener('click', toggleMenu);
+  </script>
+</body>
+</html>
